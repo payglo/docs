@@ -1,86 +1,68 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: "Quickstart"
 ---
 
-## Setup your development
+## Getting Started with Payglo
 
-Learn how to update your docs locally and and deploy them to the public.
+> Payglo is an Open Source Payment orchestrator intended to simplify payments for the merchants. With Payglo, you can connect to multiple [Payment processors, aggregators](/docs/dashboard/connectors/), [banks](/docs/paymentMethods/banks), [wallets](/docs/paymentMethods/wallets), [BNPLs](/docs/paymentMethods/payLater), and future payment methods with a few clicks on our dashboard.
 
-### Edit and preview
+### Use API keys to authenticate API requests
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
+> Payglo authenticates your API requests using your account’s API keys. Payglo raises an invalid request error if you don’t include a key, and an authentication error if the key is incorrect or outdated.
 
-### Deploy your changes
+You can use the Payglo Dashboard to reveal, revoke, and create secret API keys. If you’re setting up Payglo through a third-party platform (3PP), reveal your API keys in live mode to begin processing payments.
 
-<AccordionGroup>
+### 1. Get your Payglo API key
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
+- If you have not created a sandbox account, please create one
+  <a href="https://app.hyperswitch.io/register" target="_blank">
+    <button
+      style={{
+        borderColor: "#808080",
+        marginTop: "1.5rem",
+        width: "50%",
+        borderRadius: "0.5rem",
+        backgroundColor: "#006DF9",
+        fontWeight: "600",
+        color: "#ffffff",
+        boxShadow:
+          "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        ":hover": {
+          borderColor: "#808080",
+          backgroundColor: "transparent",
+          color: "#808080",
+        },
+      }}
+      id="cta-btn"
+    >
+      Sign Up for Payglo
+    </button>
+  </a>
+- If you have already created a sandbox account, your api key could be fetched from [settings section](https://app.hyperswitch.io/developers).
 
-</AccordionGroup>
+### 2. Configure your payment processor
 
-## Update your docs
+- Configure the payment processor of your choice using [Connectors](https://app.hyperswitch.io/connectors) tab on our dashboard. You will need to have the API credentials of the payment processor readily available.
+- If you do not have access to the API credentials of your payment processor, do not worry. Payglo has a demo payment processor automatically configured to your sandbox account. It will assist you to simulate various payment flows and assist you in completing the integration.
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+### 3. Integrate Payglo
 
-<CardGroup>
+- Don’t want to write code? Check out the [Payglo Postman Collection](https://www.postman.com/hyperswitch/workspace/hyperswitch/request/25176183-9b4ad6a8-fbdd-4919-8505-c75c83bdf9d6) for a no-code way to get started with Payglo’s API.
+- You will be using both a server and a client-side component of Payglo to complete the integration.
+- The payment flow begins once your user has added products to a shopping cart and now wishes to make a payment.
+  - **Step 1:** Your server will create a payment with Payglo server, to get a client_secret.
+  - **Step 2:** Your website loads and initiates the [Payglo SDK](/docs/sdkIntegrations/unifiedCheckoutWeb/) to render a payment widget to the customer. Depending on the customer’s currency and country, the list of payment methods are displayed to the customer.
+  - **Step 3:** The customer chooses a payment method, enters additional information (say card details) and hits the pay button.
+  - **Step 4:** Payglo SDK securely transmits the payment information to Payglo Server. The Payglo server processes the payment with the most suitable payment processor, as per your smart routing algorithm.
+  - **Step 5:** Upon successful payment, the customer is automatically redirected to your payment status confirmation page.
+    <Frame>
+      <img src="/images/checks-passed.png" style={{ borderRadius: "0.5rem" }} />
+    </Frame>
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
+### 4. Configure and manage payment methods on Payglo Dashboard
 
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
-
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
-
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
-
-</CardGroup>
+ The [Payglo dashboard](https://app.hyperswitch.io/register) provides complete control over your payment operations.
+  - **Enable and manage payment processors:** Easily onboard multiple payment processors and manage payment methods with a few clicks.
+  - **Track payment and refund information:** The unified dashboard allows you to query upon a particular payment or refund. You may also initiate refunds from the dashboard.
+  - **Smart payment routing:** You will have the complete capability to dynamically set the payment routing logic based on 20+ variables. Use this to optimize your payment processing goals.
+- Learn how to enable all payment methods [here](/docs/paymentMethods/cards) starting with Cards.
