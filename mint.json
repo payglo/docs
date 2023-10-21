@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Payglo Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -34,11 +34,23 @@
   "navigation": [
     {
       "group": "",
-      "pages": ["introduction", "quickstart", "Use PayPal with Stripe", "Go-Live Checklist","Dev Support"]
+      "pages": [
+        "introduction",
+        "quickstart",
+        "use_paypal_with_stripe",
+        "go_live_checklist",
+        "dev_support"
+      ]
     },
     {
       "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
+      "pages": [
+        "essentials/markdown",
+        "essentials/code",
+        "essentials/images",
+        "essentials/settings",
+        "essentials/navigation"
+      ]
     },
     {
       "group": "API Documentation",
